@@ -1,0 +1,108 @@
+Bin|ContryCode|Scheme|Type|CountryNumber|CountryName|BankName
+51546096|360|mastercard|credit|840|United States of America|FIRST PREMIER BANK
+40928000|840|visa|credit|076|Brazil|WELLS FARGO BANK, N.A.
+54462688|203|mastercard|credit|076|Brazil|INVESTICNI A POSTOVNI BANKA, A.S.
+52625538|840|mastercard|credit|076|Brazil|METABANK
+42658692|410|visa|credit|410|Korea (Republic of)|KOOKMIN BANK
+52625929|840|mastercard|credit|076|Brazil|NAO FORNECIDO
+55490600|840|mastercard|credit|076|Brazil|BANCO DO BRASIL
+51546093|840|mastercard|credit|840|United States of America|FIRST PREMIER BANK
+60368900|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+48976600|840|visa|debit|840|United States of America|NAO FORNECIDO
+53195414|250|mastercard|credit|826|United Kingdom of Great Britain and Northern Ireland|NORWEST BANK IOWA N.A.
+55293700|372|mastercard|credit|076|Brazil|CAIXA ECONOMICA FEDERAL
+47633100|036|visa|credit|076|Brazil|SICREDI
+40960000|840|visa|credit|076|Brazil|BRADESCO
+41042400|840|visa|credit|076|Brazil|GOLD BANK
+51546425|840|mastercard|credit|840|United States of America|FIRST PREMIER BANK
+51546300|840|mastercard|credit|840|United States of America|METABANK
+40639900|170|visa|debit|840|United States of America|NAO FORNECIDO
+42606500|724|visa|credit|076|Brazil|LUIZACRED S.A. SOCIEDADE DE CREDITO, FINANCIAMENTO E INVESTI
+51264623|840|mastercard|credit|218|Ecuador|PACIFICARD, S.A.
+51264625|840|mastercard|credit|218|Ecuador|PACIFICARD, S.A.
+54703638|422|mastercard|NAO FORNECIDO|840|United States of America|NAO FORNECIDO
+52483103|280|mastercard|NAO FORNECIDO|840|United States of America|NAO FORNECIDO
+60871002|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+60871007|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+46209200|566|visa|debit|076|Brazil|TAPIOLA PANKKI OY
+51589400|643|mastercard|credit|076|Brazil|BANCO COOPERATIVO DO BRASIL S/A 
+52470300|032|mastercard|credit|076|Brazil|NAO FORNECIDO
+51546314|608|mastercard|credit|840|United States of America|METABANK
+51268200|840|mastercard|credit|076|Brazil|CAIXA ECONOMICA FEDERAL
+51560100|840|mastercard|credit|076|Brazil|UNICRED
+52207300|840|mastercard|credit|076|Brazil|BANCO DE BRASILIA, S.A.
+55309600|840|mastercard|credit|076|Brazil|CAIXA ECONOMICA FEDERAL
+41218700|840|visa|credit|076|Brazil|BANCO DE BRASILIA
+52140086|392|mastercard|credit|076|Brazil|M AND I (MARSHALL AND ILSLEY) BANK
+48546400|643|visa|credit|076|Brazil|NAO FORNECIDO
+60871012|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+55020900|724|mastercard|credit|076|Brazil|NAO FORNECIDO
+51760400|840|mastercard|credit|840|United States of America|CHINA MINSHENG BANKING CORP., LTD.
+48963900|840|visa|debit|840|United States of America|FIRST INTERSTATE BANK
+60871098|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+40589400|604|visa|debit|840|United States of America|NAO FORNECIDO
+60871009|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+54458884|392|mastercard|NAO FORNECIDO|840|United States of America|MERCHANTS NATIONAL BANK OF AURORA
+48413200|512|visa|debit|076|Brazil|NAO FORNECIDO
+51547025|498|mastercard|credit|840|United States of America|LASALLE BANK MIDWEST, N.A.
+45938300|214|visa|credit|076|Brazil|NAO FORNECIDO
+49901101|250|visa|credit|250|France|NAO FORNECIDO
+40168400|116|visa|credit|076|Brazil|SAFRA
+54699700|643|mastercard|credit|840|United States of America|NAO FORNECIDO
+41740000|688|visa|credit|076|Brazil|BANCO BRADESCO CARTOES, S.A.
+52144188|031|mastercard|credit|076|Brazil|HSBC BANK USA, N.A.
+40360800|630|visa|credit|076|Brazil|FIRST INTERSTATE BANK
+51270773|840|mastercard|credit|076|Brazil|SICOOB
+51551895|340|mastercard|credit|076|Brazil|METABANK
+53099400|643|mastercard|credit|076|Brazil|ITAU UNIBANCO, S.A.
+54456878|442|mastercard|credit|076|Brazil|NEW ENGLAND BANKCARD ASSOCIATION, INC.
+48974100|840|visa|NAO FORNECIDO|840|United States of America|NORTHERN TRUST COMPANY
+49165500|784|visa|credit|076|Brazil|BANCO CACIQUE, S.A.
+54778100|170|mastercard|credit|616|Poland|NAO FORNECIDO
+43456200|152|visa|NAO FORNECIDO|840|United States of America|NAO FORNECIDO
+51609600|028|mastercard|credit|076|Brazil|WESTPAC BANKING CORPORATION
+48920200|840|visa|credit|076|Brazil|UNICARD BANCO MULTIPLO, S.A.
+51970400|600|mastercard|credit|124|Canada|BANK OF MONTREAL
+52532014|578|mastercard|credit|076|Brazil|ITAU UNIBANCO S/A
+51270705|840|mastercard|credit|076|Brazil|SICOOB
+51270704|840|mastercard|credit|076|Brazil|SICOOB
+51270703|840|mastercard|credit|076|Brazil|SICOOB
+52532011|578|mastercard|credit|076|Brazil|ITAU UNIBANCO S/A
+51270702|840|mastercard|credit|076|Brazil|SICOOB
+51270701|840|mastercard|credit|076|Brazil|SICOOB
+51553786|784|mastercard|credit|076|Brazil|ORCHARD BANK (HSBC GROUP)
+51656400|840|mastercard|credit|076|Brazil|WESTPAC BANKING CORPORATION
+54704367|840|mastercard|credit|076|Brazil|AL BANK AL SAUDI AL FRANSI
+51546473|392|mastercard|credit|840|United States of America|FIRST PREMIER BANK
+51546470|840|mastercard|credit|840|United States of America|FIRST PREMIER BANK
+67031250|056|mastercard|debit|056|Belgium|NAO FORNECIDO
+54463517|250|mastercard|credit|124|Canada|CANADIAN TIRE BANK
+54463511|392|mastercard|credit|124|Canada|CANADIAN TIRE BANK
+52571802|392|mastercard|credit|076|Brazil|NAO FORNECIDO
+55264000|840|mastercard|credit|076|Brazil|ITAU
+58991623|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+52207343|840|mastercard|credit|076|Brazil|BANCO DE BRASILIA, S.A.
+58991622|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+58991625|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+58991624|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+51510400|608|mastercard|debit|840|United States of America|FIRST PREMIER BANK - OBOPAY
+54550521|784|mastercard|credit|076|Brazil|EDS EMPLOYEES F.C.U.
+55027210|702|mastercard|NAO FORNECIDO|840|United States of America|NAO FORNECIDO
+52742500|724|mastercard|credit|076|Brazil|ITAU UNIBANCO, S.A.
+58991621|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+58991620|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+51551398|840|mastercard|NAO FORNECIDO|840|United States of America|ORCHARD BANK (HSBC GROUP)
+52142445|188|mastercard|credit|076|Brazil|CHASE MANHATTAN BANK USA, N.A.
+58991619|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+54469176|498|mastercard|credit|076|Brazil|NYCE PAYMENTS NETWORK, LLC
+52143776|804|mastercard|credit|076|Brazil|M AND I (MARSHALL AND ILSLEY) BANK
+54593189|124|mastercard|credit|076|Brazil|ZIP NETWORK
+47123300|566|visa|debit|076|Brazil|NAO FORNECIDO
+52142290|392|mastercard|credit|076|Brazil|M AND I (MARSHALL AND ILSLEY) BANK
+52207331|840|mastercard|credit|076|Brazil|BANCO DE BRASILIA, S.A.
+58991616|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+51546913|031|mastercard|credit|840|United States of America|LASALLE BANK, N.A.
+58991618|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+58991617|840|mastercard|debit|840|United States of America|NAO FORNECIDO
+54438851|392|mastercard|credit|076|Brazil|HSBC BANK USA, N.A.
+54497216|380|mastercard|credit|076|Brazil|M AND I (MARSHALL AND ILSLEY) BANK
