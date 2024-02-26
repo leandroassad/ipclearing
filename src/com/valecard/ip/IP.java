@@ -250,10 +250,26 @@ public class IP {
 		logOut.close();
 	}
 	
+	public void parseFiles(String path) {
+		File bulkDir = new File(path);
+		if (bulkDir.isDirectory()) {
+			File [] files = bulkDir.listFiles();
+			for(File f : files) {
+				//System.out.println(f.getAbsolutePath());
+				try {
+					parseIPMFile(f.getAbsolutePath());
+				} catch (Exception e) {
+					System.out.println("Deu pau no arquivo : [" + f.getAbsolutePath() + "] : " + e.getMessage());
+				}
+			}
+		}
+	}
+	
 	public static void main(String[] args) throws Exception {
 		IP ip = new IP();
 				
-		ip.parseIPMFile("data/CSU_ACQ_MASTER_OUTGOING_CIC1_21092023.TXT");
+		ip.parseFiles("data/bulk");
+		//ip.parseIPMFile("data/CSU_ACQ_MASTER_OUTGOING_CIC1_21092023.TXT");
 /*		
 		printFileDataAsHex("D:\\Work\\Valecard\\IP\\OUTGOING_FILES\\CSU_ACQ_MASTER_OUTGOING_CIC1_02022023_161414.TXT");
 		
