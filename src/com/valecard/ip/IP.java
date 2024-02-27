@@ -6,9 +6,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
 import org.jpos.iso.AsciiHexInterpreter;
 import org.jpos.iso.EbcdicBinaryInterpreter;
@@ -18,8 +24,60 @@ import org.jpos.iso.packager.GenericPackager;
 
 public class IP {
 	
-	public IP() {
+	Properties props;
+	String dbDriver;
+	String dbUrl;
+	String dbUser;
+	String dbPasswd;
+	Boolean generateLogs;
+	String outgoingFilesPath;
+	Connection connection;
+	long lineNumber;
+	
+	
+	String InsertOutgoingMasterSQL = "insert into  TAB_OUTGOING_MASTER "
+			+ "(NRO_LINHA, MTI, VALOR, DATAHORA, POINT_OF_SERVICE_DATA_CODE_22, FUNCTION_CODE_24, MESSAGE_REASON_CODE_25, "
+			+ "APPROVAL_CODE_38, CARD_ACCEPTOR_TERM_IDENTI_41,CARD_ACCEPTOR_IDENTI_CODE_42, INTERCHANGE_RATE_DESIGNATOR, NSU_TRANSACAO) "
+			+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	
+	public IP(Properties props) throws Exception {
+		this.props = props;
+		initProperties();
+	}
+	
+	void initProperties() throws Exception {
+		dbDriver = props.getProperty("dbDriver");
+		dbUrl = props.getProperty("dbUrl");
+		dbUser = props.getProperty("dbUser");
+		dbPasswd = props.getProperty("dbPasswd");
+		String generateLogsStr = props.getProperty("generateLogs", "false");
+		generateLogs = Boolean.parseBoolean(generateLogsStr);
 		
+		outgoingFilesPath = props.getProperty("outgoingFilesPath");
+	}
+	
+	protected void connectToDatabase() throws Exception {
+		Class.forName(dbDriver);
+		connection = DriverManager.getConnection(dbUrl, dbUser, dbPasswd);
+	}
+	
+	protected void disconnectFromDatabase() throws Exception {
+		connection.close();
+	}
+	
+	public void testConnection() throws Exception {
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("select NRO_LINHA from TAB_OUTGOING_MASTER");
+		Boolean flag = false;
+		while (rs.next()) {
+			String nroLinha = rs.getString("NRO_LINHA");
+			System.out.println("NroLinha = " + nroLinha);
+			flag = true;
+		}
+		
+		if (!flag) {
+			System.out.println("Nao ha dados");
+		}
 	}
 
 	public static void printBytesInHex(String msg, byte[] data) {
@@ -188,9 +246,13 @@ public class IP {
 		
 		// Arquivo de log
 		File logFile = new File(f.getAbsolutePath() + ".OUT.LOG");
+		PrintStream csvOut = null;
+		PrintStream logOut = null;
 		
-		PrintStream csvOut = new PrintStream(csvFile);
-		PrintStream logOut = new PrintStream(logFile);
+		if (generateLogs) {
+			csvOut = new PrintStream(csvFile);
+			logOut = new PrintStream(logFile);
+		}
 		
 		// Carrega os dados do arquivo
 		byte[] rawEbcdicData = new byte[(int)f.length()];
@@ -199,9 +261,10 @@ public class IP {
 		
 		System.out.println("Tratando arquivo [" + filename + "]");
 		
-		csvOut.println("MTI,VALOR (4),DATAHORA (12),POINT OF SERVICE DATA CODE (22),FUNCTION CODE (24),MESSAGE REASON CODE (25),"
-				+ "APPROVAL CODE (38),CARD ACCEPTOR TERMINAL IDENTIFICATION (41),CARD ACCEPTOR IDENTIFICATION CODE (42),"
-				+ "INTERCHANGE RATE DESIGNATOR");
+		if (csvOut != null)
+			csvOut.println("MTI,VALOR (4),DATAHORA (12),POINT OF SERVICE DATA CODE (22),FUNCTION CODE (24),MESSAGE REASON CODE (25),"
+					+ "APPROVAL CODE (38),CARD ACCEPTOR TERMINAL IDENTIFICATION (41),CARD ACCEPTOR IDENTIFICATION CODE (42),"
+					+ "INTERCHANGE RATE DESIGNATOR");
 
 		PDSTagParser pdsParser = new PDSTagParser();
 		int index = 0;
@@ -211,7 +274,8 @@ public class IP {
 			ISOMsg isoMsg = unpackISOSimple(isoData.isoData.toByteArray(), ISO8583MessageMap.EBCDIC_MAP);
 			index += isoData.consumedBytes;
 			parsedMessages++;
-			isoMsg.dump(logOut, " ");
+			if (logOut != null)
+				isoMsg.dump(logOut, " ");
 			
 			if (isoMsg.getMTI().equals("1240")) {
 				String IRD = "";
@@ -219,7 +283,8 @@ public class IP {
 					String bit48 = isoMsg.getString(48);
 					List<PDSTag> list = pdsParser.parse(bit48);
 					for (PDSTag pds : list) {
-						logOut.println("  " + pds.tag + " = " + pds.value);
+						if (logOut != null)
+							logOut.println("  " + pds.tag + " = " + pds.value);
 						if (pds.tag.equals("0158")) {
 							IRD = new String(pds.value.getBytes(), 10, 2);
 						}
@@ -237,25 +302,45 @@ public class IP {
 				.append(isoMsg.getString(41)).append(",")
 				.append(isoMsg.getString(42)).append(",")
 				.append(IRD);
+				
+				PreparedStatement stmt = connection.prepareStatement(InsertOutgoingMasterSQL);
+				stmt.setLong(1, lineNumber++);
+				stmt.setString(2, isoMsg.getMTI());
+				stmt.setString(3, isoMsg.getString(4));
+				stmt.setString(4, dateFormatOut.format(date));
+				stmt.setString(5, isoMsg.getString(22));
+				stmt.setString(6, isoMsg.getString(24));
+				stmt.setString(7, isoMsg.getString(25));
+				stmt.setString(8, isoMsg.getString(38));
+				stmt.setString(9, isoMsg.getString(41));
+				stmt.setString(10,isoMsg.getString(42));
+				stmt.setString(11,  IRD);
+				stmt.setLong(12,  0L);
+				stmt.executeUpdate();
 
-				csvOut.println(buffer.toString());
+				if (csvOut != null)
+					csvOut.println(buffer.toString());
 			}
 			
 		}
 		System.out.println("Numero de mensagens tratadas: " + parsedMessages);
-		System.out.println("Arquivo CSV com campos: " + csvFile.getAbsolutePath());
-		System.out.println("Arquivo de LOG do pocessamento: " + logFile.getAbsolutePath());
 		
-		csvOut.close();
-		logOut.close();
+		if (generateLogs) {
+			System.out.println("Arquivo CSV com campos: " + csvFile.getAbsolutePath());
+			System.out.println("Arquivo de LOG do pocessamento: " + logFile.getAbsolutePath());
+			csvOut.close();
+			logOut.close();
+		}
 	}
 	
-	public void parseFiles(String path) {
-		File bulkDir = new File(path);
+	public void parseFiles() throws Exception {
+		connectToDatabase();
+		
+		File bulkDir = new File(outgoingFilesPath);
 		if (bulkDir.isDirectory()) {
 			File [] files = bulkDir.listFiles();
+			lineNumber = 1;
 			for(File f : files) {
-				//System.out.println(f.getAbsolutePath());
 				try {
 					parseIPMFile(f.getAbsolutePath());
 				} catch (Exception e) {
@@ -263,12 +348,17 @@ public class IP {
 				}
 			}
 		}
+		disconnectFromDatabase();
+		System.out.println("Total de linhas inseridas: " + (lineNumber-1));
 	}
 	
 	public static void main(String[] args) throws Exception {
-		IP ip = new IP();
-				
-		ip.parseFiles("data/bulk");
+		Properties props = new Properties();
+		
+		props.load(new FileInputStream(args[0]));
+		
+		IP ip = new IP(props);
+		ip.parseFiles();
 		//ip.parseIPMFile("data/CSU_ACQ_MASTER_OUTGOING_CIC1_21092023.TXT");
 /*		
 		printFileDataAsHex("D:\\Work\\Valecard\\IP\\OUTGOING_FILES\\CSU_ACQ_MASTER_OUTGOING_CIC1_02022023_161414.TXT");

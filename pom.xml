@@ -30,7 +30,20 @@
 	    	<artifactId>ber-tlv</artifactId>
 	    	<version>1.0-10</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
+		<dependency>
+		    <groupId>com.h2database</groupId>
+		    <artifactId>h2</artifactId>
+		    <version>2.2.224</version>
+		</dependency>
 		
+		<dependency>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc10</artifactId>
+		    <version>19.22.0.0</version>
+		</dependency>
+
+
 		<dependency>
     <groupId>org.json</groupId>
     <artifactId>json</artifactId>
